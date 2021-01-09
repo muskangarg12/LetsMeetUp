@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <!-- REQUIRED METATAGS -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- TITLE -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/users.png" />
+    <title><%= title %></title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS: common.css -->
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- Custom CSS: chats.css -->
+    <link rel="stylesheet" href="/css/room.css">
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- Jquery -->
+    <script src="/js/jquery-3.2.1.js"></script>
+    <!--Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Custom JS: common.js -->
+    <script src="/js/room.js"></script>
+
+</head>
+<body>
+
+<!-- MAIN PAGE -->
+<div id="main" style="height: 100%">
+    <span id="username" data-username="<%= user.username %>" style="display: none"></span>
+    
+    <div class="row" id="room-title" style="background-color: #5c1f1b;">
+        <div class="col s1" style="float: left">
+            <a href="/rooms/<%= roomId %>/chat" id="chat-icon" class="left" style="margin: 5px;">
+                <i class="fa fa-chevron-circle-left tooltipped" data-position="left" data-tooltip="back to room"></i>
+            </a>
+        </div>
+
+        <div class="col s10 center">
+            <b><%= title %></b>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <!-- Container Displaying Group Members -->
+            <div>
+                <h4 style="text-align: center; color: white"><b>ROOM MEMBERS</b></h4>
+                <table class="centered" style="backdrop-filter: blur(1px);background-color: rgb(155 142 142 / 30%); border-radius: 10px; color: white; font-size: 20px">
+                    
+                    <tbody>
+                    <% members.forEach(member => { %>
+                        <tr><td>
+                            <%= member %>
+                        </td></tr>
+                    <% }) %>
+                    </tbody>
+                </table>
+
+                <!-- Button to Leave the Group -->
+                <form class="center-align" action="/rooms/<%= roomId %>/leave" method="POST" style="margin-top: 20px" >
+                    <button class=" btn">Leave Room</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>  <!-- END OF MAIN PAGE -->
+
+
+</body>
+</html>

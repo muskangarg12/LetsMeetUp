@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <!-- REQUIRED METATAGS -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- TITLE -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/users.png" />
+    <title><%= title %></title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS: common.css -->
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- Custom CSS: chats.css -->
+    <link rel="stylesheet" href="/css/room.css">
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- Jquery -->
+    <script src="/js/jquery-3.2.1.js"></script>
+    <!--Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Custom JS: common.js -->
+    <script src="/js/room.js"></script>
+
+</head>
+
+<body>
+    <div id="main" style="height: 100%">
+    <span id="username" data-username="<%= user.username %>" style="display: none"></span>
+    
+    <div class="row" id="room-title">
+        <div class="col s1" style="float: left">
+            <a href="/chats"  id="details-icon" class="left" style="margin: 5px;">
+                <i class="fa fa-chevron-circle-left tooltipped" data-position="left" data-tooltip="back"></i>
+            </a>
+        </div>
+
+        <div class="col s10 center"  style="padding-left: 3%;">
+            <b><%= title %></b>
+        </div>
+
+        <div class="col s1" style="float: right">
+            <a href="/rooms/<%= roomId %>"  id="details-icon" class="right" style="margin: 5px;">
+                <i class="fa fa-info-circle tooltipped" data-position="left" data-tooltip="room details"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Box -->
+    <div id="chat-box" style="height: 93%">
+        <section class="row" style="margin-bottom: 0;height: 100%; padding: 15px">
+            <!-- Editor Container -->
+            <div class="col s8" style="height: 100%; padding-right: 15px">
+
+
+                <!-- COMPILER -->
+
+                <div style="width: 100%; height: 100%;" class="container">
+                    <!-- EDITOR TEXTAREA -->
+                    <textarea class="col-md-6 full-height chalkboard" id="codebox"></textarea>
+
+
+                    <!-- BOTTOM ROW -->     
+                    <div class="row center" style="margin-bottom: 0; height: 8%; padding: 5px;">
+                        <button class="btn waves-effect" id="clear-button" style="background-color:#B78240">CLEAR BOARD</button>
+                    </div>              
+                </div>
+
+                <!--COMPILER END-->
+
+            </div>
+
+            <!-- Chat Container -->
+            <div class="col s4" style="height: 100%; padding-left: 15px; backdrop-filter: blur(1px);background-color: rgb(155 142 142 / 30%); border-radius: 10px;padding-top: 15px;">
+                <!-- Message Display Container -->
+
+                <div class="container lighten-4" id="messages-container" style="margin: 0; width: 100%; padding: 10px; height: 92%; overflow: scroll;">
+                    <ul id="messages-list" style="margin : 0">
+                        <!-- List Items to be added by chat.js -->
+                    </ul>
+                </div>
+                <!-- Input Container: Chat input and Send button -->
+                <div id="message-box" style="height: 8%">
+                    <div class="row" style="margin-bottom: 0;">
+                        <!-- Input Box -->
+                        <div class="col s9" style="padding: 7px">
+                            <div class="input-box grey lighten-1" style="padding: 0 10px;/* border: 1px solid #4db6ac*/">
+                                <input id="message-input" class=""  type="text">
+                            </div>
+                        </div>
+                        <!-- Send Button -->
+                        <div class="col s3" style="padding-left: 0; padding-right: 7px">
+                            <button id="send-button" class="btn btn-block" style="width: 100%; text-align: center">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>  <!-- End of Chat Box -->
+
+    </div>  <!-- END OF MAIN PAGE -->
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- REQUIRED METATAGS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/users.png" />
+
+    <!-- REQUIRED STYLESHEETS -->
+    <!-- Materialize -->
+    <link rel="stylesheet" href="/css/materialize.css">
+
+    <!-- SEMANTIC UI: message.css -->
+    <link rel="stylesheet" href="/css/message.css">
+    <!-- Lobster Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- Jquery -->
+    <script src="/js/jquery-3.2.1.js"></script>
+    <!-- Materialize -->
+    <script src="/js/materialize.js"></script>
+
+    <title><%= user.name %></title>
+
+    <!-- Custom CSS: common.css -->
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- Custom CSS: chats.css -->
+    <link rel="stylesheet" href="/css/room.css">
+    <link rel="stylesheet" href="/css/chats.css">
+
+    <!-- Custom JS: common.js -->
+    <script src="/js/common.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- MAIN CHATS PAGE HERE -->
+<div id="main" style="height: 100%">
+    <div class="row" id="room-title" style="height: 8%;background-color: #5c1f1b;">
+        <div class="col s2" style="float: left; font-size: smaller; margin-top: 5px;">
+            <a href="/logout" id="chat-icon" style="margin: 5px;">
+            Logout
+            <i class="fa fa-sign-out"></i>
+            </a>
+        </div>
+        <div class="col s8 center">
+            <b><%= user.username %></b>
+        </div>
+    </div>
+
+    <div style="height: 9%; backdrop-filter: blur(1px); background-color: rgb(20 2 2 / 42%);border-radius: 10px; margin: 0px 15%; box-shadow: 1px 1px 4px black;">
+        <section class="row" style="margin-bottom: 0;height: 100%; padding: 5px; margin: 25px 10px">
+
+            <!--create new room-->
+            <!-- New Room Form Container -->
+            <div class="col s5 container" style="padding: 0px">
+                <form action="/rooms" method="POST" autocomplete="off">
+                    <div class="row" style="margin-bottom: 0;">
+                        <!-- Input Box -->
+                        <div class="col s9" style="padding: 7px">
+                            <div class="input-box grey lighten-1" style="padding: 0 10px;/* border: 1px solid #4db6ac*/">
+                                <input id="room-name" name="roomName" class="input-field" type="text" placeholder="Enter Room Name" style="margin: 0px">
+                            </div>
+                        </div>
+                        <!-- Search Button -->
+                        <div class="col s3">
+                            <button class="btn btn-block" style="width: 100%; text-align: center; padding: 0px 10px;">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>  <!-- End of Create Room Container -->
+
+            <!--join existing room-->
+            <!-- Search Container -->
+            <div class="col s5 container" style="padding: 0px; float: right;">
+                <form action="/rooms/join" method="POST" autocomplete="off">
+                    <div class="row" style="margin-bottom: 0;">
+                        <!-- Input Box -->
+                        <div class="col s9" style="padding: 7px">
+                            <div class="input-box grey lighten-1" style="padding: 0 10px;/* border: 1px solid #4db6ac*/">
+                                <input id="room-search" name="roomName" type="text" placeholder="Search By Room Name" style="margin: 0px">                            
+                            </div>
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="col s3">
+                            <button class="btn btn-block" style="width: 100%; text-align: center">Join</button>
+                        </div>
+                    </div>
+                </form>
+            </div>  <!-- End of Search Container -->
+
+        </section>
+    </div><br>
+
+    <div style="padding: 10px; backdrop-filter: blur(1px); background-color: rgb(155 142 142 / 30%); border-radius: 10px; margin: 0px 15%; height: 74%; box-shadow: 1px 1px 4px black;">
+        <h5 style="text-align: center; color: white">
+            <b>YOUR ACTIVE ROOMS</b>
+        </h5>
+
+        <!-- FOR EACH CHAT, ADD A ROW FOR THE CHAT -->
+        <% chats.forEach(function(chat){ %>
+        <a href="<%= chat.link %>">
+            <!-- Background Green if unreadMessages present, else Grey -->
+            <div class="row chat-row <% if(chat.unreadMessages == 0) { %>grey<% } else { %> teal <% } %> lighten-3">
+                <!-- Image of Other Chatter/Group Image -->
+                <div class="col s1" style="margin-top: 2px">
+                    <i class="fa fa-user-circle-o fa-3x"></i>
+                </div>
+                <!-- Name of Chat(Other User name/Group Name) -->
+                <div class="col s11" style="height: 48px">
+                    <h4 class="inline chat-name">
+                        <%= chat.name %>
+                        <% if(chat.unreadMessages !== 0) { %>
+                        <span class="new badge green"><%= chat.unreadMessages %></span>
+                        <% } %>
+                    </h4>
+                </div>
+            </div>
+        </a>
+        <% }) %>
+        <!-- END OF FOR LOOP -->
+    </div>  <!-- END OF CHATS CONTAINER -->
+</div>  <!-- END OF MAIN PAGE -->
+
+</body>
+</html>
