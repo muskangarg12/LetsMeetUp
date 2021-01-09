@@ -33,6 +33,7 @@ LetsMeetUp tries to capture the physical chalkboard brainstorming sessions into 
 ## To run this project :
 
 1. Clone this repo
+2. Specify all the environment variables in a .env file. (Don't forget to setup the database)
 2. Change you directory : `cd LetsMeetUp`
 3. Run `npm install`
 4. Run `npm start`
