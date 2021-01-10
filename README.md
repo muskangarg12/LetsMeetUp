@@ -6,8 +6,6 @@ It allows group collaborations with other users by providing a shared chalkboard
 
 It is built using Sockets and Express in NodeJs supported by MongoDB database.
 
-Watch the video demo [here](https://youtu.be/skPuafEzXhY)
-
 ## Inspiration
 
 From early times, engineers, mathematicians and corporate strategy departments valued the simultaneous focus and additive collaborative nature physical whiteboards enabled. Having an entire team in one room, thinking together and with the energy of the moment allowed concepts to come forth quickly and be modified easily, unlike traditional paper or electronic documents, or even email. 
